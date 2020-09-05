@@ -32,7 +32,8 @@ export const StateProvider = ({
             ...state,
             [action.name]: {
               ...state[action.name],
-              [action.property]: state[action.name][action.property] + action.value
+              [action.property]:
+                state[action.name][action.property] + action.value
             }
           }
         } else {
