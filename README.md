@@ -1,6 +1,10 @@
 # react-global-state
 
-> Create an easy-to-use global state for react
+> Easy-to-use global state for react
+>
+> Build with the React Context Api and the useReducer hook
+>
+> For more advanced state management you should consider [React-Redux](https://react-redux.js.org/)
 
 [![NPM](https://img.shields.io/npm/v/@mdkroon/react-global-state.svg)](https://www.npmjs.com/package/@mdkroon/react-global-state) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -31,7 +35,7 @@ const initialState = {
 
 const MyAppWrapper = () => {
   return (
-    <StateProvider initialState={initialState}>
+    <StateProvider initialState={initialState} displayName='ReactGlobalState'>
       <MyApp/>
     </StateProvider>
   )
@@ -59,7 +63,7 @@ const SubComponent = () => {
 ```
 
 ## Change a state variable in a subcomponent
-You can import the dispatch function
+You can import the dispatch function to update the state
 
 ```jsx
 import React, { Component } from 'react'
@@ -109,31 +113,32 @@ value: new value or value to add/substract
 
 property: object key (optional; can only be used for object variabels)
 
-## Reset is possible
+## Reset
 
 Full reset to inital state
 
 ```js
 dispatch({ type: 'RESET'})
 ```
-Partial reset: only reset one variable
+Reset only one variable
 
 ```js
 dispatch({ type: 'RESET', name: 'score'})
 ```
-Partial reset: only reset one property of an object
+Reset only one property of an object variable
 
 ```js
 dispatch({ type: 'RESET', name: 'settings', property: 'volume'})
 ```
 
 ## Example
-React example in /example folder
+Demo created with the [create react app](https://www.npmjs.com/package/create-react-app) boilerplate can be found in /example folder
 
-## Coming soon
+## Future updates
 - Support for array variables (delete, pop, push, shift, unshift)
 - Deep merge for nested objects
+- Variable type checking (warning if wrong type)
 
 ## License
 
-GNU GPLv3 © [MDKroon](https://github.com/MDKroon)
+GNU GPLv3 © [Matthijs Kroon](https://github.com/MDKroon)
