@@ -1,10 +1,8 @@
 import React from 'react'
-
-import { ExampleComponent } from 'react-global-state'
-import 'react-global-state/dist/index.css'
+import Demo from './components/Demo'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return <Demo/>
 }
 
 export default App
