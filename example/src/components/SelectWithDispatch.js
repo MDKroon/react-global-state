@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { useContextState } from 'react-global-state'
 import Spacer from './Spacer'
 import style from './demo.module.css'
