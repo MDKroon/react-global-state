@@ -26,6 +26,7 @@ const Demo = () => {
         <Spacer size='30'/>
         <header>
           <h1>Demo 'React Global State'</h1>
+          <p>combination of the Context Api and the useReducer hook</p>
         </header>
         <Spacer size='30'/>
         <main>
