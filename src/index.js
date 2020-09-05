@@ -2,7 +2,13 @@ import React, { createContext, useReducer, useContext } from 'react'
 
 const AppContext = createContext({})
 
-export const StateProvider = ({ initialState = {}, children }) => {
+export const StateProvider = ({
+  initialState = {},
+  displayName = 'ReactGlobalState',
+  children
+}) => {
+  AppContext.displayName = displayName
+
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case 'UPDATE':
