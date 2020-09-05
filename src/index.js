@@ -6,12 +6,12 @@ export const StateProvider = ({ initialState = {}, children }) => {
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case 'UPDATE':
-        if (action.key) {
+        if (action.property) {
           return {
             ...state,
             [action.name]: {
               ...state[action.name],
-              [action.key]: action.value
+              [action.property]: action.value
             }
           }
         } else {
@@ -21,12 +21,12 @@ export const StateProvider = ({ initialState = {}, children }) => {
           }
         }
       case 'ADD':
-        if (action.key) {
+        if (action.property) {
           return {
             ...state,
             [action.name]: {
               ...state[action.name],
-              [action.key]: state[action.name][action.key] + action.value
+              [action.property]: state[action.name][action.property] + action.value
             }
           }
         } else {
@@ -36,12 +36,12 @@ export const StateProvider = ({ initialState = {}, children }) => {
           }
         }
       case 'RESET':
-        if (action.key && action.name) {
+        if (action.property && action.name) {
           return {
             ...state,
             [action.name]: {
               ...state[action.name],
-              [action.key]: initialState[action.name][action.key]
+              [action.property]: initialState[action.name][action.property]
             }
           }
         } else if (action.name) {

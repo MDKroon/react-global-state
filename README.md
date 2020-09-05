@@ -85,13 +85,13 @@ const AnotherSubComponent = () => {
   )
 }
 ```
-## Dispatch object keys
+## Dispatch object parameters
 
 ```js
 dispatch({
   type: 'UPDATE',
   name: 'settings',
-  key: 'volume',
+  property: 'volume',
   value: '8'
 })
 ```
@@ -107,7 +107,7 @@ name: variable name
 
 value: new value or value to add/substract
 
-key: object key (optional; can only be used for object variabels)
+property: object key (optional; can only be used for object variabels)
 
 ## Reset is possible
 
@@ -121,10 +121,10 @@ Partial reset: only reset one variable
 ```js
 dispatch({ type: 'RESET', name: 'score'})
 ```
-Partial reset: only reset one key of an object
+Partial reset: only reset one property of an object
 
 ```js
-dispatch({ type: 'RESET', name: 'settings', key: 'volume'})
+dispatch({ type: 'RESET', name: 'settings', property: 'volume'})
 ```
 
 ## Example
