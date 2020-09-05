@@ -2,12 +2,12 @@
 
 > Create an easy-to-use global state for react
 
-[![NPM](https://img.shields.io/npm/v/react-global-state.svg)](https://www.npmjs.com/package/react-global-state) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@mdkroon/react-global-state.svg)](https://www.npmjs.com/package/@mdkroon/react-global-state) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save react-global-state
+npm install --save @mdkroon/react-global-state
 ```
 
 ## Usage
@@ -27,4 +27,4 @@ class Example extends Component {
 
 ## License
 
-SEE LICENSE IN LICENSE © [MDKroon](https://github.com/MDKroon)
+GNU GPLv3 © [MDKroon](https://github.com/MDKroon)
