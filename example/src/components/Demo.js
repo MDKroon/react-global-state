@@ -1,7 +1,7 @@
+import { Spacer } from '@mdkroon/react-ui-components'
 import React from 'react'
 import { StateProvider } from 'react-global-state'
 import GlobalState from './GlobalState'
-import Spacer from './Spacer'
 import StateUpdater from './StateUpdater'
 import style from './demo.module.css'
 
@@ -23,12 +23,12 @@ const Demo = () => {
   return (
     <StateProvider initialState={initialState}>
       <div className={style.demo}>
-        <Spacer size='30'/>
+        <Spacer height={30}/>
         <header>
           <h1>Demo 'React Global State'</h1>
           <p>combination of the Context Api and the useReducer hook</p>
         </header>
-        <Spacer size='30'/>
+        <Spacer height={30}/>
         <main>
           <div className={style.column}>
               <StateUpdater/>
@@ -37,7 +37,7 @@ const Demo = () => {
               <GlobalState />
           </div>
         </main>
-        <Spacer size='30'/>
+        <Spacer height={30}/>
         <footer>
           GNU GPLv3 © <a href='https://github.com/MDKroon'>Matthijs Kroon</a>
         </footer>

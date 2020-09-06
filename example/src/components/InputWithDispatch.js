@@ -1,6 +1,6 @@
+import { Spacer } from '@mdkroon/react-ui-components'
 import React, { Fragment } from 'react'
 import { useContextState } from 'react-global-state'
-import Spacer from './Spacer'
 import style from './demo.module.css'
 
 const InputWithDispatch = ({type = 'UPDATE', name, property = null, defaultValue = null,
@@ -31,14 +31,14 @@ const InputWithDispatch = ({type = 'UPDATE', name, property = null, defaultValue
             onChange={(e) => onChange(e.target.value)}
             data-lpignore='true'
           /> : <Fragment>
-            <Spacer size='4'/>
+            <Spacer height={4}/>
             <button onClick={() => onChange(1)}>Add 1</button>
             <button onClick={() => onChange(-1)}>Substract 1</button>
             <button onClick={() => onChange(10)}>Add 10</button>
             <button onClick={() => onChange(-10)}>Substract 10</button>
           </Fragment>
         }
-        <Spacer size='4'/>
+        <Spacer height={4}/>
         <div><span>{labelName}:</span> {property ? state[name][property] : state[name]}</div>
     </div>
   )
