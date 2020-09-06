@@ -1,7 +1,11 @@
 {
   "name": "@mdkroon/react-global-state",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Create an easy-to-use global state for react",
+  "keywords": [
+    "react", "reactjs", "context", "context-api", "context-provider", "react-context-api",
+    "react-context-hooks", "global-state", "global-state-store", "react-global-state"
+  ],
   "author": "MDKroon",
   "license": "GNU GPLv3",
   "repository": "MDKroon/react-global-state",
