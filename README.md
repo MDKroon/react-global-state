@@ -21,7 +21,7 @@ npm install --save @mdkroon/react-global-state
 
 ```jsx
 import React, { Component } from 'react'
-import { StateProvider } from 'react-global-state'
+import { StateProvider } from '@mdkroon/react-global-state'
 import MyApp from 'components/MyApp'
 
 const initialState = {
@@ -46,14 +46,16 @@ export default MyAppWrapper
 3. Now you can use the state variables inside all the subcomponents and dispatch changes
 
 ## Use the global state in a subcomponent
-You can simply import the state from 'react-global-state'
+Import the useContextState hook from '@mdkroon/react-global-state'; this contains the state
 
 ```jsx
 import React, { Component } from 'react'
-import { state } from 'react-global-state'
+import { useContextState } from '@mdkroon/react-global-state'
 import SubComponent from 'components/SubComponent'
 
 const SubComponent = () => {
+  const { state } = useContextState()
+
   return (
     <div>
       Player: {state.player}
@@ -63,14 +65,16 @@ const SubComponent = () => {
 ```
 
 ## Change a state variable in a subcomponent
-You can import the dispatch function to update the state
+Import the useContextState hook from '@mdkroon/react-global-state'; this contains the dispatch function to update the state
 
 ```jsx
 import React, { Component } from 'react'
-import { dispatch } from 'react-global-state'
+import { useContextState } from '@mdkroon/react-global-state'
 import AnotherSubComponent from 'components/AnotherSubComponent'
 
 const AnotherSubComponent = () => {
+  const { dispatch } = useContextState()
+
   return (
     <div>
       <label htmlFor="player">Player:</label>
@@ -134,7 +138,7 @@ dispatch({ type: 'RESET', name: 'settings', property: 'volume'})
 ## Example
 A demo made with the [create react app](https://www.npmjs.com/package/create-react-app) boilerplate can be viewed [here on github pages](https://mdkroon.github.io/react-global-state/)
 
-De src code of the demo can be found in /example folder
+De src code of the demo can be found in [/example](https://github.com/MDKroon/react-global-state/tree/master/example) folder
 
 ## Future updates
 - Support for array variables (delete, pop, push, shift, unshift)
