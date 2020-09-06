@@ -1,10 +1,11 @@
-import React, { Fragment } from 'react'
+import { Spacer } from '@mdkroon/react-ui-components'
+import React, { Fragment, useState } from 'react'
 import { useContextState } from 'react-global-state'
-import Spacer from './Spacer'
+import SplitText from './SplitText'
 import style from './demo.module.css'
 
-const InputWithDispatch = ({type = 'UPDATE', name, property = null, defaultValue = null,
-    placeholder = 'Type some text', inputType = 'text', addButtons = false}) => {
+const InputWithDispatch = ({type = 'UPDATE', name, property = null, defaultValue = null, splitText = false,
+    placeholder = 'Type some text', inputType = 'text', addButton = false, addButtons = false}) => {
 
   // get state and dispatch function from useContextState hook
   const { state, dispatch } = useContextState()
@@ -14,32 +15,55 @@ const InputWithDispatch = ({type = 'UPDATE', name, property = null, defaultValue
     dispatch({type, name, property, value})
   }
 
+  const getContent = () => {
+    const content = property ? state[name][property] : state[name]
+    return splitText ? <SplitText>{content}</SplitText> : content
+  }
+
   const labelName = property ? property : name
+  const [content, setContent] = useState(null)
 
   return (
     <div className={style.inputWithDispatch}>
         <label htmlFor={`${labelName}-input`}>
           {type} {labelName}
         </label>
-        {!addButtons ?
+        {addButton ? <div className={style.inline}>
           <input
             type={inputType}
             id={`${labelName}-input`}
             name={labelName}
             placeholder={placeholder}
             defaultValue={defaultValue}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => setContent(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                onChange('\n' + e.target.value)
+                e.target.value = ''
+              }}
+            }
             data-lpignore='true'
-          /> : <Fragment>
-            <Spacer size='4'/>
-            <button onClick={() => onChange(1)}>Add 1</button>
-            <button onClick={() => onChange(-1)}>Substract 1</button>
-            <button onClick={() => onChange(10)}>Add 10</button>
-            <button onClick={() => onChange(-10)}>Substract 10</button>
-          </Fragment>
-        }
-        <Spacer size='4'/>
-        <div><span>{labelName}:</span> {property ? state[name][property] : state[name]}</div>
+          />
+          <button onClick={() => onChange('\n' + content)}>Add</button>
+        </div> : addButtons ? <Fragment>
+          <Spacer height={4}/>
+          <button onClick={() => onChange(1)}>Add 1</button>
+          <button onClick={() => onChange(-1)}>Substract 1</button>
+          <button onClick={() => onChange(10)}>Add 10</button>
+          <button onClick={() => onChange(-10)}>Substract 10</button>
+        </Fragment> : <input
+          type={inputType}
+          id={`${labelName}-input`}
+          name={labelName}
+          placeholder={placeholder}
+          defaultValue={defaultValue}
+          onChange={(e) => onChange(e.target.value)}
+          data-lpignore='true'
+        />}
+        <Spacer height={4}/>
+        <div>
+          <span>{labelName}:</span> {addButton && <br/>}{getContent()}
+        </div>
     </div>
   )
 }

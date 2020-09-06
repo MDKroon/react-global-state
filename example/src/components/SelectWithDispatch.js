@@ -1,6 +1,6 @@
+import { Spacer } from '@mdkroon/react-ui-components'
 import React from 'react'
 import { useContextState } from 'react-global-state'
-import Spacer from './Spacer'
 import style from './demo.module.css'
 
 const SelectWithDispatch = ({type = 'UPDATE', name, property = '', options}) => {
@@ -34,7 +34,7 @@ const SelectWithDispatch = ({type = 'UPDATE', name, property = '', options}) => 
         >
           {getOptions()}
         </select>
-        <Spacer size='4'/>
+        <Spacer height={4}/>
         <div><span>{labelName}:</span> {stateValue}</div>
     </div>
   )

@@ -1,7 +1,7 @@
+import { Spacer } from '@mdkroon/react-ui-components'
 import React, { Fragment } from 'react'
 import { useContextState } from 'react-global-state'
 import Box from './Box'
-import Spacer from './Spacer'
 import InputWithDispatch from './InputWithDispatch'
 import SelectWithDispatch from './SelectWithDispatch'
 
@@ -16,11 +16,13 @@ const StateUpdater = () => {
           name='player'
           placeholder='Type some text to update'
         />
-        <Spacer size='24'/>
+        <Spacer height={24}/>
         <InputWithDispatch
           type='ADD'
           name='notes'
           placeholder='Type some text to add'
+          addButton
+          splitText
         />
       </Box>
       <Box title='change integer variable'>
@@ -28,7 +30,7 @@ const StateUpdater = () => {
           name='id'
           placeholder='Type integer to update'
         />
-        <Spacer size='24'/>
+        <Spacer height={24}/>
         <InputWithDispatch
           type='ADD'
           name='score'
@@ -43,7 +45,7 @@ const StateUpdater = () => {
           property='mode'
           options={['easy', 'advanced', 'wizard']}
         />
-        <Spacer size='24'/>
+        <Spacer height={24}/>
         <InputWithDispatch
           name='settings'
           property='volume'
@@ -52,7 +54,7 @@ const StateUpdater = () => {
         />
       </Box>
       <Box title='reset'>
-        <Spacer size='8'/>
+        <Spacer height={8}/>
         <button onClick={() => dispatch({type: 'RESET'})}>
           Reset state to initial state
         </button>
