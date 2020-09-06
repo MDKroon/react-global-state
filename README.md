@@ -25,7 +25,7 @@ import { StateProvider } from '@mdkroon/react-global-state'
 import MyApp from 'components/MyApp'
 
 const initialState = {
-  player: 'John Doe',
+  player: 'John',
   score: 280,
   settings: {
     mode: 'advanced',
@@ -35,7 +35,10 @@ const initialState = {
 
 const MyAppWrapper = () => {
   return (
-    <StateProvider initialState={initialState} displayName='ReactGlobalState'>
+    <StateProvider
+      initialState={initialState}
+      displayName='ReactGlobalState'
+    >
       <MyApp/>
     </StateProvider>
   )
