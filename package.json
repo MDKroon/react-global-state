@@ -1,6 +1,6 @@
 {
   "name": "@mdkroon/react-global-state",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create an easy-to-use global state for react",
   "author": "MDKroon",
   "license": "SEE LICENSE IN LICENSE",

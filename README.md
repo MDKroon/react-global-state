@@ -21,7 +21,7 @@ npm install --save @mdkroon/react-global-state
 
 ```jsx
 import React, { Component } from 'react'
-import { StateProvider } from 'react-global-state'
+import { StateProvider } from '@mdkroon/react-global-state'
 import MyApp from 'components/MyApp'
 
 const initialState = {
@@ -46,14 +46,16 @@ export default MyAppWrapper
 3. Now you can use the state variables inside all the subcomponents and dispatch changes
 
 ## Use the global state in a subcomponent
-You can simply import the state from 'react-global-state'
+Import the useContextState hook from '@mdkroon/react-global-state'; this contains the state
 
 ```jsx
 import React, { Component } from 'react'
-import { state } from 'react-global-state'
+import { useContextState } from '@mdkroon/react-global-state'
 import SubComponent from 'components/SubComponent'
 
 const SubComponent = () => {
+  const { state } = useContextState()
+
   return (
     <div>
       Player: {state.player}
@@ -63,14 +65,16 @@ const SubComponent = () => {
 ```
 
 ## Change a state variable in a subcomponent
-You can import the dispatch function to update the state
+Import the useContextState hook from '@mdkroon/react-global-state'; this contains the dispatch function to update the state
 
 ```jsx
 import React, { Component } from 'react'
-import { dispatch } from 'react-global-state'
+import { useContextState } from '@mdkroon/react-global-state'
 import AnotherSubComponent from 'components/AnotherSubComponent'
 
 const AnotherSubComponent = () => {
+  const { dispatch } = useContextState()
+
   return (
     <div>
       <label htmlFor="player">Player:</label>
