@@ -45,7 +45,7 @@
   box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2), 0 3px 15px 0 rgba(0,0,0,0.19);
   margin: 20px 10px;
   width: 400px;
-  min-height: 250px;
+  min-height: 280px;
 }
 
 .box.grey {
@@ -60,6 +60,7 @@
   margin-left: 12px;
 }
 
+.globalState span,
 .globalState ul {
   padding-left: 12px;
 }
@@ -69,10 +70,22 @@
   display: block;
   width: 100%;
   margin: 5px 0;
+  height: 26px;
 }
 
+.selectWithDispatch div span,
 .inputWithDispatch div span {
   text-transform: capitalize;
+}
+
+.inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inline input {
+  margin-right: 5px;
 }
 
 .demo footer {

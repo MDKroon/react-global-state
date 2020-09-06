@@ -21,6 +21,8 @@ const StateUpdater = () => {
           type='ADD'
           name='notes'
           placeholder='Type some text to add'
+          addButton
+          splitText
         />
       </Box>
       <Box title='change integer variable'>

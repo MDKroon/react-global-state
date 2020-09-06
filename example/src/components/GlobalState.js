@@ -1,6 +1,7 @@
 import React from 'react'
 import { useContextState } from 'react-global-state'
 import Box from './Box'
+import SplitText from './SplitText'
 import style from './demo.module.css'
 
 const GlobalState = () => {
@@ -21,7 +22,8 @@ const GlobalState = () => {
                 <li><strong>volume:</strong> {state.settings.volume}</li>
               </ul>
             {'}'}<br/>
-            <strong>notes:</strong> {state.notes}<br/>
+            <strong>notes:</strong><br/>
+            <SplitText>{state.notes}</SplitText><br/>
           </div>
         {'}'}
       </code>
