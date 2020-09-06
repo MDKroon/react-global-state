@@ -1,7 +1,13 @@
-import { ExampleComponent } from '.'
+import { StateProvider, useContextState } from '.'
 
-describe('ExampleComponent', () => {
+describe('StateProvider', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(StateProvider).toBeTruthy()
+  })
+})
+
+describe('useContextState', () => {
+  it('is truthy', () => {
+    expect(useContextState).toBeTruthy()
   })
 })
