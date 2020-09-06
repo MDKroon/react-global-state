@@ -134,7 +134,7 @@ dispatch({ type: 'RESET', name: 'settings', property: 'volume'})
 ## Example
 A demo made with the [create react app](https://www.npmjs.com/package/create-react-app) boilerplate can be viewed [here on github pages](https://mdkroon.github.io/react-global-state/)
 
-De src code of the demo can be found in /example folder
+De src code of the demo can be found in [/example](https://github.com/MDKroon/react-global-state/tree/master/example) folder
 
 ## Future updates
 - Support for array variables (delete, pop, push, shift, unshift)
