@@ -143,6 +143,10 @@ A demo made with the [create react app](https://www.npmjs.com/package/create-rea
 
 De src code of the demo can be found in [/example](https://github.com/MDKroon/react-global-state/tree/master/example) folder
 
+## Changelog
+
+Changelog can be found [here](CHANGELOG.md)
+
 ## Future updates
 - Support for array variables (delete, pop, push, shift, unshift)
 - Deep merge for nested objects
