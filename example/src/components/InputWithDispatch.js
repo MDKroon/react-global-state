@@ -44,7 +44,13 @@ const InputWithDispatch = ({type = 'UPDATE', name, property = null, defaultValue
             }
             data-lpignore='true'
           />
-          <button onClick={() => onChange('\n' + content)}>Add</button>
+          <button onClick={() => onChange(
+            ((property && state[name] && state[name][property]) ||
+              (!property && name && state[name])) ? `\n${content}` : content
+            )}
+          >
+            Add
+          </button>
         </div> : addButtons ? <Fragment>
           <Spacer height={4}/>
           <button onClick={() => onChange(1)}>Add 1</button>

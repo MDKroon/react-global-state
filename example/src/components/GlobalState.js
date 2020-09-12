@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import { useContextState } from 'react-global-state'
 import Box from './Box'
 import SplitText from './SplitText'
@@ -22,8 +22,10 @@ const GlobalState = () => {
                 <li><strong>volume:</strong> {state.settings.volume}</li>
               </ul>
             {'}'}<br/>
-            <strong>notes:</strong><br/>
-            <SplitText>{state.notes}</SplitText><br/>
+            {state.notes && <Fragment>
+              <strong>notes:</strong><br/>
+              <SplitText>{state.notes}</SplitText><br/>
+            </Fragment>}
           </div>
         {'}'}
       </code>

@@ -58,6 +58,10 @@ const StateUpdater = () => {
         <button onClick={() => dispatch({type: 'RESET'})}>
           Reset state to initial state
         </button>
+        <Spacer height={8}/>
+        <button onClick={() => dispatch({type: 'DELETE', name: 'notes'})}>
+          Delete notes
+        </button>
       </Box>
     </Fragment>
   )
