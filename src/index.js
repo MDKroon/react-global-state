@@ -27,7 +27,7 @@ export const StateProvider = ({
           }
         }
       case 'ADD':
-        if (action.property) {
+        if (action.property && state[action.name][action.property]) {
           return {
             ...state,
             [action.name]: {
@@ -36,10 +36,23 @@ export const StateProvider = ({
                 state[action.name][action.property] + action.value
             }
           }
-        } else {
+        } else if (action.property) {
+          return {
+            ...state,
+            [action.name]: {
+              ...state[action.name],
+              [action.property]: action.value
+            }
+          }
+        } else if (state[action.name]) {
           return {
             ...state,
             [action.name]: state[action.name] + action.value
+          }
+        } else {
+          return {
+            ...state,
+            [action.name]: action.value
           }
         }
       case 'RESET':
