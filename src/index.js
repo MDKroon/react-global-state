@@ -9,84 +9,87 @@ export const StateProvider = ({
 }) => {
   AppContext.displayName = displayName
 
-  const [state, dispatch] = useReducer((state, action) => {
-    switch (action.type) {
-      case 'UPDATE':
-        if (action.property) {
-          return {
-            ...state,
-            [action.name]: {
-              ...state[action.name],
-              [action.property]: action.value
+  const [state, dispatch] = useReducer(
+    (state, action) => {
+      switch (action.type) {
+        case 'UPDATE':
+          if (action.property) {
+            return {
+              ...state,
+              [action.name]: {
+                ...state[action.name],
+                [action.property]: action.value
+              }
+            }
+          } else {
+            return {
+              ...state,
+              [action.name]: action.value
             }
           }
-        } else {
-          return {
-            ...state,
-            [action.name]: action.value
-          }
-        }
-      case 'ADD':
-        if (action.property && state[action.name][action.property]) {
-          return {
-            ...state,
-            [action.name]: {
-              ...state[action.name],
-              [action.property]:
-                state[action.name][action.property] + action.value
+        case 'ADD':
+          if (action.property && state[action.name][action.property]) {
+            return {
+              ...state,
+              [action.name]: {
+                ...state[action.name],
+                [action.property]:
+                  state[action.name][action.property] + action.value
+              }
+            }
+          } else if (action.property) {
+            return {
+              ...state,
+              [action.name]: {
+                ...state[action.name],
+                [action.property]: action.value
+              }
+            }
+          } else if (state[action.name]) {
+            return {
+              ...state,
+              [action.name]: state[action.name] + action.value
+            }
+          } else {
+            return {
+              ...state,
+              [action.name]: action.value
             }
           }
-        } else if (action.property) {
-          return {
-            ...state,
-            [action.name]: {
-              ...state[action.name],
-              [action.property]: action.value
+        case 'RESET':
+          if (action.property && action.name && initialState[action.name]) {
+            return {
+              ...state,
+              [action.name]: {
+                ...state[action.name],
+                [action.property]: initialState[action.name][action.property]
+              }
+            }
+          } else if (action.property && action.name) {
+            return {
+              ...state,
+              [action.name]: {
+                ...state[action.name],
+                [action.property]: null
+              }
+            }
+          } else if (action.name) {
+            return {
+              ...state,
+              [action.name]: initialState[action.name]
+            }
+          } else {
+            return {
+              ...initialState
             }
           }
-        } else if (state[action.name]) {
-          return {
-            ...state,
-            [action.name]: state[action.name] + action.value
-          }
-        } else {
-          return {
-            ...state,
-            [action.name]: action.value
-          }
-        }
-      case 'RESET':
-        if (action.property && action.name && initialState[action.name]) {
-          return {
-            ...state,
-            [action.name]: {
-              ...state[action.name],
-              [action.property]: initialState[action.name][action.property]
-            }
-          }
-        } else if (action.property && action.name) {
-          return {
-            ...state,
-            [action.name]: {
-              ...state[action.name],
-              [action.property]: null
-            }
-          }
-        } else if (action.name) {
-          return {
-            ...state,
-            [action.name]: initialState[action.name]
-          }
-        } else {
-          return {
-            ...initialState
-          }
-        }
-      default:
-        throw new Error()
-    }
-  }, initialState)
-console.log(state)
+        default:
+          throw new Error()
+      }
+    },
+    { ...initialState }
+  )
+
   return (
     <AppContext.Provider value={{ state, dispatch }}>
       {children}
