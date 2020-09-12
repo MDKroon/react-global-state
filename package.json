@@ -1,6 +1,6 @@
 {
   "name": "@mdkroon/react-global-state",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Create an easy-to-use global state for react",
   "keywords": [
     "react", "reactjs", "context", "context-api", "context-provider", "react-context-api",
