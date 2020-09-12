@@ -83,6 +83,17 @@ export const StateProvider = ({
               ...initialState
             }
           }
+        case 'DELETE': {
+          const tempState = state
+          if (action.property && action.name) {
+            delete tempState[action.name][action.property]
+          } else {
+            delete tempState[action.name]
+          }
+          return {
+            ...tempState
+          }
+        }
         default:
           throw new Error()
       }
