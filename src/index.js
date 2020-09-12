@@ -56,12 +56,20 @@ export const StateProvider = ({
           }
         }
       case 'RESET':
-        if (action.property && action.name) {
+        if (action.property && action.name && initialState[action.name]) {
           return {
             ...state,
             [action.name]: {
               ...state[action.name],
               [action.property]: initialState[action.name][action.property]
+            }
+          }
+        } else if (action.property && action.name) {
+          return {
+            ...state,
+            [action.name]: {
+              ...state[action.name],
+              [action.property]: null
             }
           }
         } else if (action.name) {
@@ -78,7 +86,7 @@ export const StateProvider = ({
         throw new Error()
     }
   }, initialState)
-
+console.log(state)
   return (
     <AppContext.Provider value={{ state, dispatch }}>
       {children}
