@@ -8,7 +8,15 @@
 
 [![NPM](https://img.shields.io/npm/v/@mdkroon/react-global-state.svg)](https://www.npmjs.com/package/@mdkroon/react-global-state) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## Install
+## Main content
+
+- [How to install this package](#install)
+- [Getting started](#getting-started)
+- [How to use the dispatch function](#how-to-use-the-dispatch-function)
+- [Documentation and Examples](#documentation)
+- [Changelog](#changelog)
+
+## How to install this package
 
 ```bash
 npm install --save @mdkroon/react-global-state
@@ -16,8 +24,7 @@ npm install --save @mdkroon/react-global-state
 
 ## Getting started
 
-1. Wrap the 'StateProvider' around your app
-2. Initialise the global state
+### 1. Wrap the 'StateProvider' around your app and initialise the global state
 
 ```jsx
 import React, { Component } from 'react'
@@ -46,10 +53,12 @@ const MyAppWrapper = () => {
 
 export default MyAppWrapper
 ```
-3. Now you can use the state variables inside all the subcomponents and dispatch changes
 
-## Use the global state in a subcomponent
-Import the useContextState hook from '@mdkroon/react-global-state'; this contains the state
+
+### 2. Use the global state in a subcomponent
+Import the useContextState hook from '@mdkroon/react-global-state'
+
+Use the state variable from the useContextState hook
 
 ```jsx
 import React, { Component } from 'react'
@@ -67,8 +76,10 @@ const SubComponent = () => {
 }
 ```
 
-## Change a state variable in a subcomponent
-Import the useContextState hook from '@mdkroon/react-global-state'; this contains the dispatch function to update the state
+### 3. Change a state variable in a subcomponent
+Import the useContextState hook from '@mdkroon/react-global-state'
+
+Use dispatch function to update the state
 
 ```jsx
 import React, { Component } from 'react'
@@ -96,61 +107,55 @@ const AnotherSubComponent = () => {
   )
 }
 ```
-## Dispatch object parameters
+
+## How to use the dispatch function
+
+The dispatch function needs an object as argument.<br />
+This object contains the parameters that are needed to update te state.
 
 ```js
 dispatch({
   type: 'UPDATE',
   name: 'settings',
   property: 'volume',
-  value: '8'
+  value: 8
 })
 ```
-type:
+|parameter|desciption|required/optional|
+|---|---|--|
+|`type`|type of dispatch|required|
+|`name`|state variable name|required (but optional for `RESET`)|
+|`value`|value to update/add/substract|required for `UPDATE` / `ADD`|
+|`property`|object key|optional, and only for object variabels|
 
-`'UPDATE'` -> replace the state variable
+### Dispatch types
 
-`'ADD'` -> add value to state variable (if integer), substract (if negative integer), concat (if string)
+The following types are available:
 
-`'RESET'` -> reset to initial state
+|type|functionality|
+|---|---|
+|`UPDATE`| replace the state variable|
+|`ADD`|add value to state variable (if integer), substract (if negative integer), concat (if string)|
+|`RESET`|reset to initial state|
+|`DELETE`|delete a variable of the state or a property of an object|
 
-name: variable name
+## Documentation
 
-value: new value or value to add/substract
+Documentation with examples of the dispatch function can be found in [documentation.md](DOCUMENTATION.md)
 
-property: object key (optional; can only be used for object variabels)
+A demo can be viewed on [github pages](https://mdkroon.github.io/react-global-state/)
 
-## Reset
-
-Full reset to inital state
-
-```js
-dispatch({ type: 'RESET'})
-```
-Reset only one variable
-
-```js
-dispatch({ type: 'RESET', name: 'score'})
-```
-Reset only one property of an object variable
-
-```js
-dispatch({ type: 'RESET', name: 'settings', property: 'volume'})
-```
-
-## Example
-A demo made with the [create react app](https://www.npmjs.com/package/create-react-app) boilerplate can be viewed [here on github pages](https://mdkroon.github.io/react-global-state/)
-
-De src code of the demo can be found in [/example](https://github.com/MDKroon/react-global-state/tree/master/example) folder
+De source code of the demo can be found in the [/example](https://github.com/MDKroon/react-global-state/tree/master/example) folder of the in the github repo
 
 ## Changelog
 
-Changelog can be found [here](CHANGELOG.md)
+Updates and fixes can be found in [changelog.md](CHANGELOG.md)
 
-## Future updates
+### Future updates
+- Variable type checking (warning if wrong type)
 - Support for array variables (delete, pop, push, shift, unshift)
 - Deep merge for nested objects
-- Variable type checking (warning if wrong type)
+
 
 ## Credits
 
