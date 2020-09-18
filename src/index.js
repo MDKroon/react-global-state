@@ -84,7 +84,7 @@ export const StateProvider = ({
             }
           }
         case 'DELETE': {
-          const tempState = state
+          const tempState = { ...state }
           if (action.property && action.name) {
             delete tempState[action.name][action.property]
           } else {
