@@ -62,6 +62,10 @@ const StateUpdater = () => {
         <button onClick={() => dispatch({type: 'DELETE', name: 'notes'})}>
           Delete notes
         </button>
+        <Spacer height={8}/>
+        <button onClick={() => dispatch({type: 'CODING_SUCKS'})}>
+          Dispatching an unknown type will throw an error
+        </button>
       </Box>
     </Fragment>
   )

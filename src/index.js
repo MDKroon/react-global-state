@@ -95,7 +95,9 @@ export const StateProvider = ({
           }
         }
         default:
-          throw new Error()
+          throw new Error(
+            `You tried to dispatch type '${action.type}', but this type is not recognized.`
+          )
       }
     },
     { ...initialState }

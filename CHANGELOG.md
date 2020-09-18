@@ -1,5 +1,10 @@
 # Changelog
 
+## [UNRELEASED]
+
+### Changed
+- improved error warnings
+
 ## [1.0.3] 2020-09-13
 
 ### Fixed
