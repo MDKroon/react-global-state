@@ -14,7 +14,10 @@ const initialState = {
     mode: 'easy',
     volume: 10,
   },
-  notes: 'Account created on 5-9-2020 21:23'
+  notes: 'Account created on 5-9-2020 21:23',
+  awards: [
+    'being awesome'
+  ]
 }
 
 // wrap state provider around your app content

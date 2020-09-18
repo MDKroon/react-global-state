@@ -4,7 +4,7 @@ import { useContextState } from 'react-global-state'
 import SplitText from './SplitText'
 import style from './demo.module.css'
 
-const InputWithDispatch = ({type = 'UPDATE', name, property = null, defaultValue = null, splitText = false,
+const InputWithDispatch = ({type = 'UPDATE', name, index = null, property = null, defaultValue = null, splitText = false,
     placeholder = 'Type some text', inputType = 'text', addButton = false, addButtons = false}) => {
 
   // get state and dispatch function from useContextState hook
@@ -12,11 +12,15 @@ const InputWithDispatch = ({type = 'UPDATE', name, property = null, defaultValue
 
   // dispatch change to the global state
   const onChange = (value) => {
-    dispatch({type, name, property, value})
+    dispatch({type, name, index, property, value})
   }
 
   const getContent = () => {
-    const content = property ? state[name][property] : state[name]
+  const content = index
+    ? state[name].map((item, index) => <span key={index}>{item}</span>)
+    : property
+      ? state[name][property]
+      : state[name]
     return splitText ? <SplitText>{content}</SplitText> : content
   }
 
@@ -26,7 +30,7 @@ const InputWithDispatch = ({type = 'UPDATE', name, property = null, defaultValue
   return (
     <div className={style.inputWithDispatch}>
         <label htmlFor={`${labelName}-input`}>
-          {type} {labelName}
+          {type} {labelName} {typeof index === 'number' && index >= 0 ? `(index ${index})` : ''}
         </label>
         {addButton ? <div className={style.inline}>
           <input

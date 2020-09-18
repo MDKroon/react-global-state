@@ -39,6 +39,13 @@ const StateUpdater = () => {
           addButtons
         />
       </Box>
+      <Box title='change array'>
+        <InputWithDispatch
+          name='awards'
+          index={0}
+          placeholder='Change index 0 of array'
+        />
+      </Box>
       <Box title='change object'>
         <SelectWithDispatch
           name='settings'

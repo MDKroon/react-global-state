@@ -27,6 +27,13 @@ const GlobalState = () => {
               <strong>notes:</strong><br/>
               <SplitText>{state.notes}</SplitText><br/>
             </Fragment>}
+            <strong>awards:</strong> {'['}
+              <ul>
+                {state.awards.map((award, index) => {
+                  return <li key={index}>{award}</li>
+                })}
+              </ul>
+            {']'}<br/>
           </div>
         {'}'}
       </code>
