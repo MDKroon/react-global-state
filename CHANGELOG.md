@@ -2,6 +2,9 @@
 
 ## [UNRELEASED]
 
+## Added
+- support for arrays
+
 ### Changed
 - improved error warnings
 

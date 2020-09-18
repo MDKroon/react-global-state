@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react'
-import { basicUpdater, objectUpdater } from './updaters'
+import { basicUpdater, arrayUpdater, objectUpdater } from './updaters'
 
 const AppContext = createContext({})
 
@@ -16,6 +16,8 @@ export const StateProvider = ({
         case 'UPDATE': {
           if (action.property) {
             return objectUpdater(state, action)
+          } else if (action.index >= 0) {
+            return arrayUpdater(state, action)
           } else {
             return basicUpdater(state, action)
           }
