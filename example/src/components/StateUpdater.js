@@ -59,9 +59,15 @@ const StateUpdater = () => {
           Reset state to initial state
         </button>
         <Spacer height={8}/>
+        <button onClick={() => dispatch({type: 'RESET', name: 'settings', property: 'music'})}>
+          Reset an undefined property
+        </button>
+        <Spacer height={8}/>
         <button onClick={() => dispatch({type: 'DELETE', name: 'notes'})}>
           Delete notes
         </button>
+      </Box>
+      <Box title='errors'>
         <Spacer height={8}/>
         <button onClick={() => dispatch({type: 'CODING_SUCKS'})}>
           Dispatching an unknown type will throw an error
