@@ -1,4 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react'
+import { basicUpdater, objectUpdater } from './updaters'
 
 const AppContext = createContext({})
 
@@ -12,72 +13,33 @@ export const StateProvider = ({
   const [state, dispatch] = useReducer(
     (state, action) => {
       switch (action.type) {
-        case 'UPDATE':
+        case 'UPDATE': {
           if (action.property) {
-            return {
-              ...state,
-              [action.name]: {
-                ...state[action.name],
-                [action.property]: action.value
-              }
-            }
+            return objectUpdater(state, action)
           } else {
-            return {
-              ...state,
-              [action.name]: action.value
-            }
+            return basicUpdater(state, action)
           }
+        }
         case 'ADD':
-          if (action.property && state[action.name][action.property]) {
-            return {
-              ...state,
-              [action.name]: {
-                ...state[action.name],
-                [action.property]:
-                  state[action.name][action.property] + action.value
-              }
-            }
-          } else if (action.property) {
-            return {
-              ...state,
-              [action.name]: {
-                ...state[action.name],
-                [action.property]: action.value
-              }
-            }
-          } else if (state[action.name]) {
-            return {
-              ...state,
-              [action.name]: state[action.name] + action.value
-            }
+          if (action.property) {
+            const value = state[action.name][action.property]
+              ? state[action.name][action.property] + action.value
+              : action.value
+            return objectUpdater(state, action, value)
           } else {
-            return {
-              ...state,
-              [action.name]: action.value
-            }
+            const value = state[action.name]
+              ? state[action.name] + action.value
+              : action.value
+            return basicUpdater(state, action, value)
           }
         case 'RESET':
-          if (action.property && action.name && initialState[action.name]) {
-            return {
-              ...state,
-              [action.name]: {
-                ...state[action.name],
-                [action.property]: initialState[action.name][action.property]
-              }
-            }
-          } else if (action.property && action.name) {
-            return {
-              ...state,
-              [action.name]: {
-                ...state[action.name],
-                [action.property]: null
-              }
-            }
+          if (action.property && action.name) {
+            const value = initialState[action.name]
+              ? initialState[action.name][action.property]
+              : undefined
+            return objectUpdater(state, action, value)
           } else if (action.name) {
-            return {
-              ...state,
-              [action.name]: initialState[action.name]
-            }
+            return basicUpdater(state, action, initialState[action.name])
           } else {
             return {
               ...initialState
