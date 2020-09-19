@@ -89,7 +89,7 @@ export function arrayUpdater(state, action) {
       error(state, action)
   }
 
-  return update(state, action, tempArray)
+  return update(state, action.name, tempArray)
 }
 
 export function objectUpdater(state, action) {
