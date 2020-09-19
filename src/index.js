@@ -1,66 +1,58 @@
 import React, { createContext, useReducer, useContext } from 'react'
-import { basicUpdater, arrayUpdater, objectUpdater } from './updaters'
+import { create, remove } from './library/general'
+import {
+  defaultUpdater,
+  numberUpdater,
+  stringUpdater,
+  boolUpdater,
+  arrayUpdater,
+  objectUpdater
+} from './library/updaters'
+import { validateAction } from './library/validators'
 
 const AppContext = createContext({})
 
 export const StateProvider = ({
   initialState = {},
   displayName = 'ReactGlobalState',
+  validate = true,
   children
 }) => {
   AppContext.displayName = displayName
 
   const [state, dispatch] = useReducer(
     (state, action) => {
-      switch (action.type) {
-        case 'UPDATE': {
+      validate && validateAction(state, action)
+      switch (typeof state[action.name]) {
+        case 'number':
+          return numberUpdater(state, action)
+        case 'string':
+          return stringUpdater(state, action)
+        case 'bool':
+          return boolUpdater(state, action)
+        case 'function':
+          return defaultUpdater(state, action)
+        case 'object': {
           if (action.property) {
             return objectUpdater(state, action)
-          } else if (action.index >= 0) {
+          } else if (Array.isArray(state[action.name])) {
             return arrayUpdater(state, action)
           } else {
-            return basicUpdater(state, action)
+            return create(state, action) // state[action.name] = null
           }
         }
-        case 'ADD':
-          if (action.property) {
-            const value = state[action.name][action.property]
-              ? state[action.name][action.property] + action.value
-              : action.value
-            return objectUpdater(state, action, value)
+        case 'undefined': {
+          if (action.type !== 'RESET') {
+            return create(state, action)
           } else {
-            const value = state[action.name]
-              ? state[action.name] + action.value
-              : action.value
-            return basicUpdater(state, action, value)
-          }
-        case 'RESET':
-          if (action.property && action.name) {
-            const value = initialState[action.name]
-              ? initialState[action.name][action.property]
-              : undefined
-            return objectUpdater(state, action, value)
-          } else if (action.name) {
-            return basicUpdater(state, action, initialState[action.name])
-          } else {
-            return {
-              ...initialState
-            }
-          }
-        case 'DELETE': {
-          const tempState = { ...state }
-          if (action.property && action.name) {
-            delete tempState[action.name][action.property]
-          } else {
-            delete tempState[action.name]
-          }
-          return {
-            ...tempState
+            return remove(state, action, initialState)
           }
         }
         default:
           throw new Error(
-            `You tried to dispatch type '${action.type}', but this type is not recognized.`
+            `You tried to update a '${typeof state[
+              action.name
+            ]}' variable, but this type is not supported yet.`
           )
       }
     },

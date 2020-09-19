@@ -3,10 +3,19 @@
 ## [UNRELEASED]
 
 ## Added
-- support for arrays
+- dispatch types `PUSH`, `UNSHIFT`, `POP` and `SHIFT` for arrays
+- dispatch types `INCREMENT`, `DECREMENT` and `SUBSTRACT` for numbers
+- dispatch type `TOGGLE` for booleans
+- dispatch type `CONCAT` for strings
+- support for function variables
+- validator for actions
 
 ### Changed
 - improved error warnings
+- improved demo
+
+### Depricated
+- using `ADD` for strings will be removed in future updates (use `CONCAT` instead)
 
 ## [1.0.3] 2020-09-13
 
@@ -15,7 +24,7 @@
 - crash if dispatch `RESET` was used with an undefined state property
 
 ### Added
-- `DELETE` dispatch type
+- dispatch type `DELETE`
 - [documentation](DOCUMENTATION.md) to keep the readme concise
 - [changelog](CHANGELOG.md) to track fixed and new features
 
@@ -40,5 +49,5 @@
 ### Added
 - StateProvider component
 - useContextState hook containing the dispatch and global state
-- `UPDATE`, `ADD`, `RESET` dispatch types
+- dispatch types `UPDATE`, `ADD`, `RESET`
 - demo in [/example](https://github.com/MDKroon/react-global-state/tree/master/example) for using this package
