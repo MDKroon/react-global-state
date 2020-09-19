@@ -34,6 +34,7 @@ const GlobalState = () => {
                 })}
               </ul>
             {']'}<br/>
+            <strong>multiplier:</strong> {state.multiplier.toString()}<br/>
           </div>
         {'}'}
       </code>

@@ -17,7 +17,8 @@ const initialState = {
   notes: 'Account created on 5-9-2020 21:23',
   awards: [
     'being awesome'
-  ]
+  ],
+  multiplier: (x) => {return 2*x}
 }
 
 // wrap state provider around your app content
