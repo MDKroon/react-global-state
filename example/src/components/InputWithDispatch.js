@@ -5,14 +5,15 @@ import SplitText from './SplitText'
 import style from './demo.module.css'
 
 const InputWithDispatch = ({type = 'UPDATE', name, index = null, property = null, defaultValue = null, splitText = false,
-    placeholder = 'Type some text', inputType = 'text', addButton = false, addButtons = false}) => {
+    placeholder = 'Type some text', inputType = 'text', addButton = false, addButtons = false, parseInteger = false}) => {
 
   // get state and dispatch function from useContextState hook
   const { state, dispatch } = useContextState()
 
   // dispatch change to the global state
   const onChange = (value) => {
-    dispatch({type, name, index, property, value})
+    const newValue = parseInteger ? parseInt(value, 10) : value
+    dispatch({type, name, index, property, value: newValue})
   }
 
   const getContent = () => {

@@ -29,6 +29,7 @@ const StateUpdater = () => {
         <InputWithDispatch
           name='id'
           placeholder='Type integer to update'
+          parseInteger
         />
         <Spacer height={24}/>
         <InputWithDispatch
@@ -58,6 +59,7 @@ const StateUpdater = () => {
           property='volume'
           defaultValue={state.settings.volume}
           inputType='number'
+          parseInteger
         />
       </Box>
       <Box title='reset'>
