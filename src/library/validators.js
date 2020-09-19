@@ -10,7 +10,8 @@ const dispatchTypes = [
   'PUSH',
   'UNSHIFT',
   'POP',
-  'SHIFT'
+  'SHIFT',
+  'RESET'
 ]
 
 const validateValue = (state, action) => {
