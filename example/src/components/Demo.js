@@ -25,7 +25,7 @@ const initialState = {
 const Demo = () => {
 
   return (
-    <StateProvider initialState={initialState}>
+    <StateProvider initialState={initialState} displayName='ReactGlobalStateDemo' validate={true}>
       <div className={style.demo}>
         <Spacer height={30}/>
         <header>
