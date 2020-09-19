@@ -18,7 +18,7 @@ const StateUpdater = () => {
         />
         <Spacer height={24}/>
         <InputWithDispatch
-          type='ADD'
+          type='CONCAT'
           name='notes'
           placeholder='Type some text to add'
           addButton
