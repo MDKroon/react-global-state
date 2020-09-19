@@ -34,7 +34,7 @@ export function numberUpdater(state, action) {
       return update(state, action.name, value)
     }
     default:
-      defaultUpdater(state, action)
+      return defaultUpdater(state, action)
   }
 }
 
@@ -48,7 +48,7 @@ export function stringUpdater(state, action) {
       return update(state, action.name, value)
     }
     default:
-      defaultUpdater(state, action)
+      return defaultUpdater(state, action)
   }
 }
 
@@ -59,7 +59,7 @@ export function boolUpdater(state, action) {
       return update(state, action.name, !value)
     }
     default:
-      defaultUpdater(state, action)
+      return defaultUpdater(state, action)
   }
 }
 
