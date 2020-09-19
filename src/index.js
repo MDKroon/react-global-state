@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react'
-import { create, remove } from './library/general'
+import { create, reset } from './library/general'
 import {
   defaultUpdater,
   numberUpdater,
@@ -45,7 +45,7 @@ export const StateProvider = ({
           if (action.type !== 'RESET') {
             return create(state, action)
           } else {
-            return remove(state, action, initialState)
+            return reset(state, action, initialState)
           }
         }
         default:
