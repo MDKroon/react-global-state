@@ -12,7 +12,7 @@ const InputWithDispatch = ({type = 'UPDATE', name, index = null, property = null
 
   // dispatch change to the global state
   const onChange = (value) => {
-    const newValue = parseInteger ? parseInt(value, 10) : value
+    const newValue = parseInteger ? parseInt(value, 10) || 0 : value
     dispatch({type, name, index, property, value: newValue})
   }
 
