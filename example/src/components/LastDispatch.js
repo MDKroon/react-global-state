@@ -1,43 +1,35 @@
 import React, { Fragment } from 'react'
-import { useContextState } from 'react-global-state'
+import { actionKeys, useContextState } from 'react-global-state'
 import Box from './Box'
 import style from './demo.module.css'
 
-const GlobalState = () => {
-  // get state from useContextState hook
+const LastDispatch = () => {
   const { state } = useContextState()
+  const dispatchKeys = state._dispatch && Object.keys(state._dispatch)
+
+  const getKeyContent = (keyName, keyIndex) => {
+    return (
+      <Fragment key={keyIndex}>
+        {dispatchKeys.findIndex((name) => name === keyName) !== -1 && <Fragment>
+          <strong>{keyName}:</strong> {state._dispatch[keyName] || <em>[undefined]</em>}<br/>
+        </Fragment>}
+      </Fragment>
+    )
+  }
 
   return (
     <Box title='last dispatch' bgColor='grey'>
     <code>
       {'{'}
-        {state._dispatch
-          ? <div className={style.globalState}>
-              <strong>type:</strong> {state._dispatch.type}<br/>
-              {state._dispatch.name && <Fragment>
-                <strong>name:</strong> {state._dispatch.name}<br/>
-              </Fragment>}
-              {state._dispatch.property && <Fragment>
-                <strong>property:</strong> {state._dispatch.property}<br/>
-              </Fragment>}
-              {Object.keys(state._dispatch)
-                     .filter((key) => key === 'index').length > 0
-              && state._dispatch.index !== null && <Fragment>
-                <strong>index:</strong> {state._dispatch.index}<br/>
-              </Fragment>}
-              {Object.keys(state._dispatch)
-                     .filter((key) => key === 'value').length > 0
-              && state._dispatch.value !== null && <Fragment>
-                <strong>value:</strong> {state._dispatch.value}<br/>
-              </Fragment>}
-            </div>
-          : <div className={style.globalState}>
-              Nothing dispatched yet
-            </div>}
+        <div className={style.globalState}>
+          {state._dispatch
+          ? actionKeys.map((keyName, keyIndex) => getKeyContent(keyName, keyIndex))
+          : 'Nothing dispatched yet'}
+        </div>
       {'}'}
     </code>
   </Box>
   )
 }
 
-export default GlobalState
+export default LastDispatch
