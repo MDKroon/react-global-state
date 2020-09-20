@@ -2,6 +2,7 @@ import { Spacer } from '@mdkroon/react-ui-components'
 import React from 'react'
 import { StateProvider } from 'react-global-state'
 import GlobalState from './GlobalState'
+import LastDispatch from './LastDispatch'
 import StateUpdater from './StateUpdater'
 import style from './demo.module.css'
 
@@ -34,11 +35,12 @@ const Demo = () => {
         </header>
         <Spacer height={30}/>
         <main>
-          <div className={style.column}>
-              <StateUpdater/>
-            </div>
-            <div className={style.column}>
-              <GlobalState />
+          <div className={style.row}>
+            <GlobalState/>
+            <LastDispatch/>
+          </div>
+          <div className={style.row}>
+            <StateUpdater/>
           </div>
         </main>
         <Spacer height={30}/>
