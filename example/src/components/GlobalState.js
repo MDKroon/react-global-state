@@ -20,6 +20,7 @@ const GlobalState = () => {
               <ul>
                 <li><strong>mode:</strong> {state.settings.mode}</li>
                 <li><strong>volume:</strong> {state.settings.volume}</li>
+                <li><strong>trial:</strong> {state.settings.trial ? 'true' : 'false'}</li>
                 {Object.keys(state.settings).includes('music') && <li><strong>music:</strong> {state.settings.music   || <em>[undefined]</em>}</li>}
               </ul>
             {'}'}<br/>

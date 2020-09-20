@@ -14,6 +14,7 @@ const initialState = {
   settings: {
     mode: 'easy',
     volume: 10,
+    trial: true,
   },
   notes: 'Account created on 5-9-2020 21:23',
   awards: [
