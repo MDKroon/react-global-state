@@ -9,6 +9,7 @@
 - dispatch type `CONCAT` for strings
 - support for function variables
 - validator for actions
+- last dispatch will be saved to the state as (`_dispatch`) object
 
 ### Changed
 - improved error warnings

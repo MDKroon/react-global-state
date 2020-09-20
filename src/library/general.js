@@ -1,3 +1,11 @@
+// set new state
+export function setState(newState, action) {
+  return {
+    ...newState,
+    _dispatch: { ...action }
+  }
+}
+
 // create a new state variable
 export function create(state, action) {
   let value = null
@@ -38,11 +46,11 @@ export function create(state, action) {
   }
 
   if (!action.property && !action.index) {
-    return update(state, action.name, value)
+    return update(state, action, value)
   } else if (action.property && !action.index) {
-    return updateObject(state, action.name, action.property, value)
+    return updateObject(state, action, value)
   } else if (action.index && !action.property) {
-    return updateArray(state, action.name, action.index, value)
+    return updateArray(state, action, value)
   } else {
     // nested boject and array
     // todo
@@ -50,39 +58,42 @@ export function create(state, action) {
 }
 
 // update a variable
-export function update(state, name, value) {
-  return {
-    ...state,
-    [name]: value
-  }
+export function update(state, action, value) {
+  return setState(
+    {
+      ...state,
+      [action.name]: value
+    },
+    action
+  )
 }
 
 // update an index of an array variable
-export function updateArray(state, name, index, value) {
-  const tempArray = state[name] ? [...state[name]] : []
-  tempArray[index] = value
-  return update(state, name, tempArray)
+export function updateArray(state, action, value) {
+  const tempArray = state[action.name] ? [...state[action.name]] : []
+  tempArray[action.index] = value
+  return update(state, action, tempArray)
 }
 
 // update a property from an object variable
-export function updateObject(state, name, property, value) {
-  const tempObject = state[name] ? { ...state[name] } : {}
-  tempObject[property] = value
-  return update(state, name, tempObject)
+export function updateObject(state, action, value) {
+  const tempObject = state[action.name] ? { ...state[action.name] } : {}
+  tempObject[action.property] = value
+  return update(state, action, tempObject)
 }
 
 // delete variable from the state
-export function remove(state, name) {
+export function remove(state, action) {
   const tempState = { ...state }
-  delete tempState[name]
-  return { ...tempState }
+  delete tempState[action.name]
+  return setState(tempState, action)
 }
 
 // reset to the inital state
 export function reset(state, action, initialState) {
   if (!action.name) {
     // reset complete state
-    return { ...initialState }
+    return setState(initialState, action)
   } else {
     if (action.property && action.index) {
       if (!Array.isArray(state[action.name])) {
@@ -98,14 +109,14 @@ export function reset(state, action, initialState) {
         initialState[action.name] && initialState[action.name][action.property]
           ? initialState[action.name][action.property]
           : undefined
-      return updateObject(state, action.name, action.property, value)
+      return updateObject(state, action, value)
     } else if (action.index) {
       // reset an array variable
       const value =
         initialState[action.name] && initialState[action.name][action.index]
           ? initialState[action.name][action.index]
           : undefined
-      return updateArray(state, action.name, action.index, value)
+      return updateArray(state, action, value)
     } else {
       // reset other types
       return update(state, action, initialState[action.name])

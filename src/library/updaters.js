@@ -3,9 +3,9 @@ import { update, updateObject, remove, error } from './general'
 export function defaultUpdater(state, action) {
   switch (action.type) {
     case 'UPDATE':
-      return update(state, action.name, action.value)
+      return update(state, action, action.value)
     case 'DELETE':
-      return remove(state, action.name)
+      return remove(state, action)
     default:
       error(state, action)
   }
@@ -15,23 +15,23 @@ export function numberUpdater(state, action) {
   switch (action.type) {
     case 'INCREMENT': {
       const value = state[action.name] ? state[action.name] + 1 : 1
-      return update(state, action.name, value)
+      return update(state, action, value)
     }
     case 'DECREMENT': {
       const value = state[action.name] ? state[action.name] - 1 : -1
-      return update(state, action.name, value)
+      return update(state, action, value)
     }
     case 'ADD': {
       const value = state[action.name]
         ? state[action.name] + action.value
         : action.value
-      return update(state, action.name, value)
+      return update(state, action, value)
     }
     case 'SUBSTRACT': {
       const value = state[action.name]
         ? state[action.name] - action.value
         : -action.value
-      return update(state, action.name, value)
+      return update(state, action, value)
     }
     default:
       return defaultUpdater(state, action)
@@ -45,7 +45,7 @@ export function stringUpdater(state, action) {
       const value = state[action.name]
         ? state[action.name].concat(action.value)
         : action.value
-      return update(state, action.name, value)
+      return update(state, action, value)
     }
     default:
       return defaultUpdater(state, action)
@@ -56,7 +56,7 @@ export function boolUpdater(state, action) {
   switch (action.type) {
     case 'TOGGLE': {
       const value = Boolean(state[action.name]) || false
-      return update(state, action.name, !value)
+      return update(state, action, !value)
     }
     default:
       return defaultUpdater(state, action)
@@ -89,14 +89,14 @@ export function arrayUpdater(state, action) {
       error(state, action)
   }
 
-  return update(state, action.name, tempArray)
+  return update(state, action, tempArray)
 }
 
 export function objectUpdater(state, action) {
   if (!action.index) {
     // update object property
     // todo switch for different types
-    return updateObject(state, action.name, action.property, action.value)
+    return updateObject(state, action, action.value)
   } else if (!Array.isArray(state[action.name])) {
     // object property is array type
     // todo
