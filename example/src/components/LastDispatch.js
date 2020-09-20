@@ -20,11 +20,14 @@ const GlobalState = () => {
               {state._dispatch.property && <Fragment>
                 <strong>property:</strong> {state._dispatch.property}<br/>
               </Fragment>}
-              {state._dispatch.index && <Fragment>
+              {Object.keys(state._dispatch)
+                     .filter((key) => key === 'index').length > 0
+              && state._dispatch.index !== null && <Fragment>
                 <strong>index:</strong> {state._dispatch.index}<br/>
               </Fragment>}
               {Object.keys(state._dispatch)
-                     .filter((key) => key === 'value') !== -1 && <Fragment>
+                     .filter((key) => key === 'value').length > 0
+              && state._dispatch.value !== null && <Fragment>
                 <strong>value:</strong> {state._dispatch.value}<br/>
               </Fragment>}
             </div>
